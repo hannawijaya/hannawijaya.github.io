@@ -2370,6 +2370,54 @@ sup.metric-ast { margin-left:1px; }
 .case .case-prose-block ol li            { position: relative !important; display: block !important; padding-left: 32px !important; }
 .case .case-prose-block ol li::before   { position: absolute !important; left: 0 !important; top: 0 !important; }
 </style>
+<style id="sa-css">
+/* ── Scroll-driven card entrance (ported from the 21st.dev masonry-grid-with-scroll-animation component) ── */
+@keyframes sa-slide-in{from{opacity:0;transform:scale(.85) rotate(calc(var(--side,1)*(5deg*var(--amp,1))))}to{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes sa-soft-in{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+@media (prefers-reduced-motion:no-preference){
+.work-card.sa,
+.testimonial-card.sa{animation:sa-slide-in linear both;animation-timeline:view();animation-range:entry 0% cover 15%;transform-origin:50% 100%;}
+{animation:sa-soft-in linear both;animation-timeline:view();animation-range:entry 0% cover 12%;}
+.work-card.sa:nth-child(odd),
+.testimonial-card.sa:nth-child(odd){--side:1;}
+.work-card.sa:nth-child(even),
+.testimonial-card.sa:nth-child(even){--side:-1;}
+.work-card.sa:nth-child(4n+1),
+.testimonial-card.sa:nth-child(4n+1),
+.work-card.sa:nth-child(4n+2),
+.testimonial-card.sa:nth-child(4n+2){--amp:1;}
+.work-card.sa:nth-child(4n+3),
+.testimonial-card.sa:nth-child(4n+3),
+.work-card.sa:nth-child(4n),
+.testimonial-card.sa:nth-child(4n){--amp:2;}
+.work-grid>.work-card.sa:nth-child(2n+1),
+.work-grid>.testimonial-card.sa:nth-child(2n+1),
+.testimonial-grid>.work-card.sa:nth-child(2n+1),
+.testimonial-grid>.testimonial-card.sa:nth-child(2n+1){transform-origin:25vw 100%;}
+.work-grid>.work-card.sa:nth-child(2n),
+.work-grid>.testimonial-card.sa:nth-child(2n),
+.testimonial-grid>.work-card.sa:nth-child(2n),
+.testimonial-grid>.testimonial-card.sa:nth-child(2n){transform-origin:-25vw 100%;}
+@media (min-width:769px){
+{transform-origin:33vw 100%;}
+{transform-origin:0 100%;}
+{transform-origin:-33vw 100%;}
+}
+@media (max-width:768px){.work-card.sa,
+.testimonial-card.sa{transform-origin:50% 100%!important;}}
+}}
+</style>
+<style id="sa-grid">
+/* cards stand alone so each can animate separately */
+.work-grid{gap:16px;background:transparent;border:0;border-radius:0;overflow:visible;}
+.work-card{border:1px solid var(--border);border-radius:10px;}
+/* the old sticky "curtain" is replaced by the card entrance effect */
+.curtain-sticky{position:static!important;}
+/* overflow:hidden turns body and the Work section into scroll containers, which stops view() scroll timelines from tracking the page. clip looks the same without that side effect. */
+@supports (overflow:clip){body{overflow-x:clip!important;}.grid-bg{overflow:clip!important;}}
+@supports (animation-timeline: view()){@media (prefers-reduced-motion:no-preference){.work-card.reveal{opacity:1;transform:none;transition:background .2s;}}}
+</style>
 </head>
 <body>
 
@@ -2450,7 +2498,7 @@ sup.metric-ast { margin-left:1px; }
           <span class="hero-proof-lbl">data accuracy</span>
         </div>
         <div class="hero-proof-item">
-          <span class="hero-proof-num">240&#8239;&#8594;&#8239;5 min</span>
+          <span class="hero-proof-num">240+ min&#8239;&#8594;&#8239;5 min</span>
           <span class="hero-proof-lbl">payment prep time</span>
         </div>
       </div>
@@ -2466,7 +2514,7 @@ sup.metric-ast { margin-left:1px; }
         <div class="hero-profile-name">Hanna Wijaya</div>
         <div class="hero-profile-title">Operations &amp; Systems Lead</div>
         <div class="hero-profile-links">
-          <a href="https://www.linkedin.com/in/hanna-wijaya-505900213" target="_blank" rel="noopener" class="hero-profile-link">linkedin.com/in/hanna-wijaya</a>
+          <a href="https://www.linkedin.com/in/hanna-wijaya-505900213" target="_blank" rel="noopener" class="hero-profile-link">linkedin.com/in/hanna-wijaya-505900213</a>
           <div class="hero-profile-location">Batam, Indonesia · Open for relocation</div>
         </div>
         <div class="hero-expand-cta">
@@ -2504,7 +2552,7 @@ sup.metric-ast { margin-left:1px; }
 
     <div class="work-grid">
       <!-- Card 1 -->
-      <a href="javascript:void(0)" class="work-card reveal" onclick="openCase('case-1')">
+      <a href="javascript:void(0)" class="work-card reveal sa" onclick="openCase('case-1')">
         <div class="work-card-n">01</div>
         <div class="work-card-tags">
           <span class="work-tag">ClickUp · UAT · PRD</span>
@@ -2523,7 +2571,7 @@ sup.metric-ast { margin-left:1px; }
       </a>
 
       <!-- Card 2 -->
-      <a href="javascript:void(0)" class="work-card reveal" onclick="openCase('case-2')">
+      <a href="javascript:void(0)" class="work-card reveal sa" onclick="openCase('case-2')">
         <div class="work-card-n">02</div>
         <div class="work-card-tags">
           <span class="work-tag">AI · OCR · Google Sheets</span>
@@ -2542,7 +2590,7 @@ sup.metric-ast { margin-left:1px; }
       </a>
 
       <!-- Card 4 -->
-      <a href="javascript:void(0)" class="work-card reveal" onclick="openCase('case-4')">
+      <a href="javascript:void(0)" class="work-card reveal sa" onclick="openCase('case-4')">
         <div class="work-card-n">03</div>
         <div class="work-card-tags">
           <span class="work-tag">Excel automation</span>
@@ -2560,7 +2608,7 @@ sup.metric-ast { margin-left:1px; }
         </div>
       </a>
       <!-- Card 3 -->
-      <a href="javascript:void(0)" class="work-card reveal" onclick="openCase('case-3')">
+      <a href="javascript:void(0)" class="work-card reveal sa" onclick="openCase('case-3')">
         <div class="work-card-n">04</div>
         <div class="work-card-tags">
           <span class="work-tag">CMS · In-app module</span>
@@ -2593,14 +2641,14 @@ sup.metric-ast { margin-left:1px; }
   <div class="section-inner">
     <div class="section-label">What colleagues say</div>
     <div class="testimonial-grid">
-      <div class="testimonial-card">
+      <div class="testimonial-card sa">
         <div class="testimonial-quote-mark">&ldquo;</div>
         <p class="testimonial-quote">Hanna consistently demonstrated strong ownership, professionalism, and a clear understanding of both day-to-day operations and the bigger picture&hellip; One of Hanna's key strengths is her ability to translate operational needs into clear processes.</p>
         <div class="testimonial-name">Ivan Ong</div>
         <div class="testimonial-title">Operations Manager · Worked with Hanna on the same team</div>
         <a href="https://www.linkedin.com/in/hanna-wijaya-505900213/details/recommendations/" target="_blank" rel="noopener" class="testimonial-link">View on LinkedIn ↗</a>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card sa">
         <div class="testimonial-quote-mark">&ldquo;</div>
         <p class="testimonial-quote">Hanna combines strategic thinking with a genuine commitment to her team's growth, consistently creating an environment where people feel empowered to perform at their best.</p>
         <div class="testimonial-name">Albert Tan</div>
@@ -3798,7 +3846,7 @@ sup.metric-ast { margin-left:1px; }
       <div class="footer-name">Hanna Wijaya</div>
       <div class="footer-links">
         <a href="mailto:hannawijaya2525@gmail.com" class="footer-link">hannawijaya2525@gmail.com</a>
-        <a href="https://www.linkedin.com/in/hanna-wijaya-505900213" target="_blank" rel="noopener" class="footer-link">linkedin.com/in/hanna-wijaya</a>
+        <a href="https://www.linkedin.com/in/hanna-wijaya-505900213" target="_blank" rel="noopener" class="footer-link">linkedin.com/in/hanna-wijaya-505900213</a>
       </div>
       <div class="footer-avail">Open for opportunities · Visa sponsorship welcome</div>
     </div>

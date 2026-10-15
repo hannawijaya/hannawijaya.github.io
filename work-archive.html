@@ -43,6 +43,105 @@
 .sb-panel a[aria-current="page"]{color:#1F3864;font-weight:600;background:#edf0f8;}
 @media (max-width:1080px){.sb-links{display:none;}.sb-menu{display:block;}.sb-inner{padding:0 20px;gap:12px;}}
 @media (max-width:420px){.sb-cv{padding:8px 12px;}}
+</style>
+<style id="sa-css">
+/* ── Scroll-driven card entrance (ported from the 21st.dev masonry-grid-with-scroll-animation component) ── */
+@keyframes sa-slide-in{from{opacity:0;transform:scale(.85) rotate(calc(var(--side,1)*(5deg*var(--amp,1))))}to{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes sa-soft-in{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+@media (prefers-reduced-motion:no-preference){
+.link-card,
+.pres-record,
+.asset-card,
+.ff-card{animation:sa-slide-in linear both;animation-timeline:view();animation-range:entry 0% cover 15%;transform-origin:50% 100%;}
+.brief-card{animation:sa-soft-in linear both;animation-timeline:view();animation-range:entry 0% cover 12%;}
+.link-card:nth-child(odd),
+.pres-record:nth-child(odd),
+.asset-card:nth-child(odd),
+.ff-card:nth-child(odd){--side:1;}
+.link-card:nth-child(even),
+.pres-record:nth-child(even),
+.asset-card:nth-child(even),
+.ff-card:nth-child(even){--side:-1;}
+.link-card:nth-child(4n+1),
+.pres-record:nth-child(4n+1),
+.asset-card:nth-child(4n+1),
+.ff-card:nth-child(4n+1),
+.link-card:nth-child(4n+2),
+.pres-record:nth-child(4n+2),
+.asset-card:nth-child(4n+2),
+.ff-card:nth-child(4n+2){--amp:1;}
+.link-card:nth-child(4n+3),
+.pres-record:nth-child(4n+3),
+.asset-card:nth-child(4n+3),
+.ff-card:nth-child(4n+3),
+.link-card:nth-child(4n),
+.pres-record:nth-child(4n),
+.asset-card:nth-child(4n),
+.ff-card:nth-child(4n){--amp:2;}
+.g2>.link-card:nth-child(2n+1),
+.g2>.pres-record:nth-child(2n+1),
+.g2>.asset-card:nth-child(2n+1),
+.g2>.ff-card:nth-child(2n+1){transform-origin:25vw 100%;}
+.g2>.link-card:nth-child(2n),
+.g2>.pres-record:nth-child(2n),
+.g2>.asset-card:nth-child(2n),
+.g2>.ff-card:nth-child(2n){transform-origin:-25vw 100%;}
+@media (min-width:769px){
+.g3>.link-card:nth-child(3n+1),
+.g3>.pres-record:nth-child(3n+1),
+.g3>.asset-card:nth-child(3n+1),
+.g3>.ff-card:nth-child(3n+1),
+.link-cards-grid>.link-card:nth-child(3n+1),
+.link-cards-grid>.pres-record:nth-child(3n+1),
+.link-cards-grid>.asset-card:nth-child(3n+1),
+.link-cards-grid>.ff-card:nth-child(3n+1){transform-origin:33vw 100%;}
+.g3>.link-card:nth-child(3n+2),
+.g3>.pres-record:nth-child(3n+2),
+.g3>.asset-card:nth-child(3n+2),
+.g3>.ff-card:nth-child(3n+2),
+.link-cards-grid>.link-card:nth-child(3n+2),
+.link-cards-grid>.pres-record:nth-child(3n+2),
+.link-cards-grid>.asset-card:nth-child(3n+2),
+.link-cards-grid>.ff-card:nth-child(3n+2){transform-origin:0 100%;}
+.g3>.link-card:nth-child(3n),
+.g3>.pres-record:nth-child(3n),
+.g3>.asset-card:nth-child(3n),
+.g3>.ff-card:nth-child(3n),
+.link-cards-grid>.link-card:nth-child(3n),
+.link-cards-grid>.pres-record:nth-child(3n),
+.link-cards-grid>.asset-card:nth-child(3n),
+.link-cards-grid>.ff-card:nth-child(3n){transform-origin:-33vw 100%;}
+}
+@media (max-width:768px){.link-card,
+.pres-record,
+.asset-card,
+.ff-card{transform-origin:50% 100%!important;}}
+}}
+body{overflow-x:clip;}
+/* overflow:hidden would make each section a scroll container and break view() timelines; clip looks identical */
+.arch-section{overflow:clip!important;}
+</style>
+<style id="arch-nav-css">
+.page-header{padding-top:112px;}
+.start-here{background:#fff;border-bottom:1px solid var(--border);}
+.start-inner{max-width:1280px;margin:0 auto;padding:28px 48px;}
+.start-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.start-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.start-card{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid var(--border);border-radius:8px;background:var(--bg);transition:border-color .2s,transform .2s;}
+.start-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.start-title{font-size:15px;font-weight:600;color:var(--ink);}
+.start-desc{font-size:13px;color:var(--mid);line-height:1.5;}
+.arch-index{position:sticky;top:64px;z-index:150;background:rgba(250,249,245,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.arch-index-inner{max-width:1280px;margin:0 auto;padding:10px 48px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.arch-index-inner::-webkit-scrollbar{display:none;}
+.arch-index a{flex:0 0 auto;font-size:12.5px;font-weight:500;color:var(--mid);padding:7px 14px;border:1px solid var(--border);border-radius:999px;background:#fff;white-space:nowrap;transition:all .2s;}
+.arch-index a:hover{border-color:var(--accent);color:var(--accent);}
+.arch-index a.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.arch-section{scroll-margin-top:122px;border-top:4px solid var(--accent);border-bottom:1px solid var(--border);}
+.arch-section:nth-of-type(odd){background:#fff;}
+.arch-section:nth-of-type(even){background:#f3f0e8;}
+@media(max-width:768px){.start-inner{padding:24px 20px;}.start-grid{grid-template-columns:1fr;}.arch-index-inner{padding:10px 20px;}.page-header{padding-top:100px;}}
 </style></head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,8 +360,21 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   </div>
 </div>
 
+
+<div class="start-here"><div class="start-inner">
+  <div class="start-label">Short on time? Start here</div>
+  <div class="start-grid">
+    <a href="#briefs" class="start-card"><span class="start-title">Requirement Briefs</span><span class="start-desc">How an operational problem becomes a build-ready spec.</span></a>
+    <a href="#systems" class="start-card"><span class="start-title">Apps Script Systems</span><span class="start-desc">Two AI-assisted automation systems built from my specifications.</span></a>
+    <a href="#townhall" class="start-card"><span class="start-title">Town Halls</span><span class="start-desc">What I present to senior leadership each quarter.</span></a>
+  </div>
+</div></div>
+<div class="arch-index" id="archIndex"><div class="arch-index-inner" role="navigation" aria-label="Sections">
+<a href="#briefs" data-sec="briefs">Requirement Briefs</a><a href="#systems" data-sec="systems">Apps Script Systems</a><a href="#specs" data-sec="specs">Specs &amp; Flows</a><a href="#shipped" data-sec="shipped">Shipped (5 of 65)</a><a href="#design-qa" data-sec="design-qa">Design QA</a><a href="#app-check" data-sec="app-check">Monthly App Check</a><a href="#townhall" data-sec="townhall">Town Halls</a><a href="#decks" data-sec="decks">Update Decks</a><a href="#guides" data-sec="guides">User Guides</a>
+</div></div>
+
 <!-- ════ PROJECT BRIEFS ═══════════════════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="briefs">
   <div class="arch-inner">
     <div class="arch-label">Product Documentation</div>
     <h2 class="arch-heading">Sample Product Requirement Briefs</h2>
@@ -396,7 +508,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ AUTOMATION / APPS SCRIPT ═══════════════════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="systems">
   <div class="arch-inner">
     <div class="arch-label">Systems &amp; Automation</div>
     <h2 class="arch-heading">Production Google Apps Script Systems</h2>
@@ -574,7 +686,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ FEATURE SPECS ═══════════ -->
-<section class="arch-section">
+<section class="arch-section" id="specs">
   <div class="arch-inner">
     <div class="arch-label">Feature Specifications &amp; Process Flows</div>
     <h2 class="arch-heading">Logic Flows, Specifications &amp; Operational Maps</h2>
@@ -961,7 +1073,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 
 
 <!-- ════ FLAGSHIP ════════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="shipped">
   <div class="arch-inner">
     <div class="arch-label">Flagship Enhancements</div>
     <h2 class="arch-heading">Five of the 65 Shipped Initiatives</h2>
@@ -977,7 +1089,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ DESIGN QA ═══════════════════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="design-qa">
   <div class="arch-inner">
     <div class="arch-label">Design Quality Assurance</div>
     <h2 class="arch-heading">Figma UI/UX Audit &amp; AI-Agent Review Workflow</h2>
@@ -1032,7 +1144,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ MONTHLY APP CHECK ═══════════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="app-check">
   <div class="arch-inner">
     <div class="arch-label">Quality Assurance</div>
     <h2 class="arch-heading">Monthly App Check: A Repeatable Regression Checklist</h2>
@@ -1098,7 +1210,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ TOWN HALL PRESENTATIONS ═ -->
-<section class="arch-section">
+<section class="arch-section" id="townhall">
   <div class="arch-inner">
     <div class="arch-label">Town Hall Presentations</div>
     <h2 class="arch-heading">Quarterly Updates Presented to Senior Leadership</h2>
@@ -1172,7 +1284,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ ENHANCEMENT DECKS ════════ -->
-<section class="arch-section">
+<section class="arch-section" id="decks">
   <div class="arch-inner">
     <div class="arch-label">Enhancement Decks</div>
     <h2 class="arch-heading">Product &amp; Operational Update Presentations</h2>
@@ -1235,7 +1347,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 </section>
 
 <!-- ════ USER GUIDES ══════════════ -->
-<section class="arch-section">
+<section class="arch-section" id="guides">
   <div class="arch-inner">
     <div class="arch-label">User Guides &amp; Landing Pages</div>
     <h2 class="arch-heading">Public-facing Resources Co-created With the Graphic Designer</h2>
@@ -1311,4 +1423,22 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
 })();
 </script>
 
+<script>
+(function(){
+  var chips=document.querySelectorAll('.arch-index a[data-sec]');
+  if(!chips.length||!('IntersectionObserver' in window))return;
+  var map={};chips.forEach(function(c){map[c.dataset.sec]=c;});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        chips.forEach(function(c){c.classList.remove('active');});
+        var c=map[e.target.id];
+        if(c){c.classList.add('active');
+          var box=c.parentNode; box.scrollTo({left:c.offsetLeft-box.clientWidth/2+c.clientWidth/2,behavior:'smooth'});}
+      }
+    });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('.arch-section[id]').forEach(function(sec){io.observe(sec);});
+})();
+</script>
 </body></html>
