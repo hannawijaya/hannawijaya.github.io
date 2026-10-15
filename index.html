@@ -1628,6 +1628,14 @@ footer {
 
 /* ── Nav actions (CV + Portfolio side by side) ─── */
 .nav-actions { display:flex; gap:8px; align-items:center; }
+/* Desktop text links; hamburger takes over below 1080px */
+.nav-links { display:flex; align-items:center; gap:26px; margin-left:auto; margin-right:12px; }
+.nav-links a { font-size:13px; font-weight:500; color:var(--hero-text); opacity:.85; white-space:nowrap; transition:color .2s, opacity .2s; }
+.nav-links a:hover { opacity:1; color:var(--accent); }
+.nav.scrolled .nav-links a { color:var(--ink); }
+.nav.scrolled .nav-links a:hover { color:var(--accent); }
+@media (min-width:1081px) { .fluid-menu { display:none; } }
+@media (max-width:1080px) { .nav-links { display:none; } }
 /* ── Fluid menu: circular toggle that drops a stack of items ── */
 .fluid-menu { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
 .fluid-menu-toggle {
@@ -2369,6 +2377,14 @@ sup.metric-ast { margin-left:1px; }
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="nav-logo">Hanna Wijaya</a>
+    <div class="nav-links" aria-label="Site sections">
+      <a href="#" data-about-link>About</a>
+      <a href="#work">Work</a>
+      <a href="https://hannawijaya.github.io/work-archive.html">Work Archive</a>
+      <a href="https://hannawijaya.github.io/capability-brief.html">Capability Brief</a>
+      <a href="https://hannawijaya.github.io/side-projects.html">Side Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
     <div class="nav-actions">
       <a class="nav-cta shimmer" href="https://hannawijaya.github.io/Hanna_Wijaya_CV.pdf" download="Hanna_Wijaya_CV.pdf" target="_blank" rel="noopener">Download CV</a>
       <div class="fluid-menu" id="fluidMenu">
@@ -2388,15 +2404,19 @@ sup.metric-ast { margin-left:1px; }
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
           <span class="fluid-menu-label">Work</span>
         </a>
-        <a href="#contact" class="fluid-menu-item" style="--i:3">
+        <a href="https://hannawijaya.github.io/work-archive.html" class="fluid-menu-item" style="--i:3">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+          <span class="fluid-menu-label">Work Archive</span>
+        </a>
+        <a href="#contact" class="fluid-menu-item" style="--i:4">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           <span class="fluid-menu-label">Contact</span>
         </a>
-        <a href="https://hannawijaya.github.io/capability-brief.html" target="_blank" rel="noopener" class="fluid-menu-item" style="--i:4">
+        <a href="https://hannawijaya.github.io/capability-brief.html" target="_blank" rel="noopener" class="fluid-menu-item" style="--i:5">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
           <span class="fluid-menu-label">Capability Brief</span>
         </a>
-        <a href="https://hannawijaya.github.io/side-projects.html" target="_blank" rel="noopener" class="fluid-menu-item" style="--i:5">
+        <a href="https://hannawijaya.github.io/side-projects.html" target="_blank" rel="noopener" class="fluid-menu-item" style="--i:6">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
           <span class="fluid-menu-label">Side Projects</span>
         </a>
@@ -4018,6 +4038,9 @@ sup.metric-ast { margin-left:1px; }
         openModal();
       });
     }
+    document.querySelectorAll('[data-about-link]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
   })();
 </script>
 
