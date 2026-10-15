@@ -122,6 +122,27 @@ body{overflow-x:clip;}
 /* overflow:hidden would make each section a scroll container and break view() timelines; clip looks identical */
 .arch-section{overflow:clip!important;}
 </style>
+<style id="mock-css">
+.mock-badge{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:#fff4d6;color:#7a5a00;border:1px solid #ecd9a0;font-size:10px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle;font-weight:600;}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.mock-wide{grid-column:1/-1;}
+.mock-panel{border:1px solid var(--border);border-radius:8px;background:var(--surface);overflow:hidden;}
+.mock-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--border);}
+.mock-scroll{overflow-x:auto;}
+.mock-table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.4;}
+@media(max-width:768px){.mock-table{min-width:640px;}}
+.mock-table th{position:sticky;top:0;background:#edf0f8;color:var(--accent);font-weight:600;text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:normal;vertical-align:bottom;}
+.mock-table td{padding:7px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);color:var(--ink);white-space:normal;}
+.mock-table tr:last-child td{border-bottom:0;}
+.mock-table th:last-child,.mock-table td:last-child{border-right:0;}
+.mock-flag td{background:#fdecea;}
+.mock-flag td:last-child{color:#a8493c;font-weight:600;}
+.mock-skip td{background:#f4f2ec;color:var(--mid);}
+.shot-img{width:100%;display:block;height:auto;}
+.mock-panel a{display:block;}
+.mock-note{margin-top:12px;font-size:12px;color:var(--mid);}
+@media(max-width:768px){.mock-grid{grid-template-columns:1fr;}}
+</style>
 <style id="arch-nav-css">
 .page-header{padding-top:112px;}
 .start-here{background:#fff;border-bottom:1px solid var(--border);}
@@ -602,6 +623,46 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
               </div>
             </div>
           </div>
+          <div class="brief-section mock">
+            <div class="brief-section-label">Output Preview <span class="mock-badge">Mockup · sample data</span></div>
+            <div class="brief-section-text">Each run reads the schedule of every programme, each kept in its own spreadsheet, applies that programme's rules, and writes a preview tab per programme before anything is exported. Rows that need a fix are flagged, every run is logged, and the final file is a values-only XLSX in the CMS import template. Mock-up of the real layout, built with sample values.</div>
+            <div class="mock-grid">
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Preview tab · one row per job, per role</div>
+                <div class="mock-scroll"><table class="mock-table"><thead><tr><th>Source Row</th><th>Output Job Number</th><th>Role</th><th>Person</th><th>Contact</th><th>Date</th><th>Start</th><th>End</th><th>Venue</th><th>Workout</th><th>Participants</th><th>Errors</th></tr></thead><tbody><tr><td>32</td><td>PRG NOV'26 1</td><td>Instructor</td><td>Instructor A</td><td>9XXX XXXX</td><td>02/11/2026</td><td>8:00</td><td>9:00</td><td>Sample Hall, Level 1</td><td>Strength Start</td><td>40</td><td></td></tr><tr><td>32</td><td>PRG NOV'26 1 FACIL</td><td>Facilitator</td><td>Facilitator B</td><td>8XXX XXXX</td><td>02/11/2026</td><td>8:00</td><td>9:00</td><td>Sample Hall, Level 1</td><td>Strength Start</td><td>40</td><td></td></tr><tr><td>84</td><td>PRG NOV'26 2</td><td>Instructor</td><td>Instructor C</td><td>9XXX XXXX</td><td>03/11/2026</td><td>19:00</td><td>20:00</td><td>Sample Community Club</td><td>Core Foundations</td><td>40</td><td></td></tr><tr class="mock-flag"><td>136</td><td>PRG NOV'26 3</td><td>Instructor</td><td>Instructor D</td><td></td><td>03/11/2026</td><td>19:00</td><td>20:00</td><td>Sample Community Club</td><td>Upper Body Boost</td><td>40</td><td>Instructor contact number is missing</td></tr><tr class="mock-skip"><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>05/11/2026</td><td>n/a</td><td>n/a</td><td>Sample Stadium Ring</td><td>Cardio Flow</td><td>n/a</td><td>Skipped: remarks say "Cancelled"</td></tr></tbody></table></div>
+              </div>
+              <div class="mock-panel">
+                <div class="mock-title">Output Log · every file generated, per programme</div>
+                <div class="mock-scroll"><table class="mock-table"><thead><tr><th>Generated At</th><th>Month</th><th>File Name</th><th>Rows</th><th>Errors</th></tr></thead><tbody><tr><td>29/09 16:16</td><td>Nov 2026</td><td>AAA_NOV'26_….xlsx</td><td>312</td><td>12</td></tr><tr><td>29/09 17:34</td><td>Nov 2026</td><td>BBB_NOV'26_….xlsx</td><td>112</td><td>3</td></tr><tr><td>15/10 17:13</td><td>Nov 2026</td><td>CCC_NOV'26_….xlsx</td><td>56</td><td>1</td></tr><tr><td>15/10 17:28</td><td>Nov 2026</td><td>DDD_NOV'26_….xlsx</td><td>392</td><td>5</td></tr></tbody></table></div>
+              </div>
+              <div class="mock-panel">
+                <div class="mock-title">Error Log · what was skipped or flagged, and why</div>
+                <div class="mock-scroll"><table class="mock-table"><thead><tr><th>Source Row</th><th>Location</th><th>Workout</th><th>Issue</th></tr></thead><tbody><tr><td>33</td><td>Sample Stadium Ring</td><td>Strength</td><td>Skipped: remarks say "Cancelled"</td></tr><tr><td>91</td><td>Unlisted Venue Hall</td><td>Hip Hop</td><td>Location not found in master allocation</td></tr><tr><td>136</td><td>Sample Community Club</td><td>Upper Body Boost</td><td>Instructor contact number is missing</td></tr></tbody></table></div>
+              </div>
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Final file · values-only XLSX in the CMS import template (33 columns, a sample shown)</div>
+                <div class="mock-scroll"><table class="mock-table"><thead><tr><th>Row Number (Job Number)</th><th>Workout Type</th><th>Programme Category</th><th>Main Location</th><th>Role</th><th>Date of Session</th><th>Start Time</th><th>End Time</th><th>No. of Instructors / Facilitators</th><th>No. of participants / Session</th></tr></thead><tbody><tr><td>PRG NOV'26 1</td><td>Strength Start</td><td>Programme A</td><td>Sample Hall, Level 1</td><td>Instructor</td><td>02/11/2026</td><td>08:00</td><td>09:00</td><td>1</td><td>40</td></tr><tr><td>PRG NOV'26 1 FACIL</td><td>Strength Start</td><td>Programme A</td><td>Sample Hall, Level 1</td><td>Facilitator</td><td>02/11/2026</td><td>08:00</td><td>09:00</td><td>1</td><td>40</td></tr><tr><td>PRG NOV'26 2</td><td>Core Foundations</td><td>Programme A</td><td>Sample Community Club</td><td>Instructor</td><td>03/11/2026</td><td>19:00</td><td>20:00</td><td>1</td><td>40</td></tr></tbody></table></div>
+              </div>
+            </div>
+          </div>
+          <div class="brief-section shots">
+            <div class="brief-section-label">Real Output <span class="mock-badge">Redacted screenshots</span></div>
+            <div class="brief-section-text">Real screenshots from the live tool. Names, phone numbers, pay rates, file links and venue addresses are blurred or replaced with sample values. Click an image to enlarge.</div>
+            <div class="mock-grid">
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Preview tab · virtual programme, flagged rows shown in the Errors column</div>
+                <a href="assets/systems/vqh_preview.jpg" target="_blank" rel="noopener"><img class="shot-img" src="assets/systems/vqh_preview.jpg" alt="Preview tab of the CMS Import Generator with personal details blurred" loading="lazy"></a>
+              </div>
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Output Log · every file generated, per programme</div>
+                <a href="assets/systems/output_log.jpg" target="_blank" rel="noopener"><img class="shot-img" src="assets/systems/output_log.jpg" alt="Output Log tab listing each generated import file with row and error counts" loading="lazy"></a>
+              </div>
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Error Log · rows skipped, and why</div>
+                <a href="assets/systems/error_log.jpg" target="_blank" rel="noopener"><img class="shot-img" src="assets/systems/error_log.jpg" alt="Error Log tab listing skipped rows with the reason" loading="lazy"></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -671,6 +732,27 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
                 <text x="546" y="122" text-anchor="middle" fill="#1F3864" font-size="9" font-weight="700">Director's HPB</text>
                 <text x="546" y="134" text-anchor="middle" fill="#1F3864" font-size="9" font-weight="700">Submission Template</text>
               </svg>
+              </div>
+            </div>
+          </div>
+          <div class="brief-section mock">
+            <div class="brief-section-label">Output Preview <span class="mock-badge">Mockup · sample data</span></div>
+            <div class="brief-section-text">Every scheduled session is matched to a submitted finding and labelled, so nothing is missed and the exceptions are easy to see. Mock-up of the real layout, built with sample values.</div>
+            <div class="mock-grid">
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Match result · audit schedule vs submitted findings</div>
+                <div class="mock-scroll"><table class="mock-table"><thead><tr><th>Session ID</th><th>Date</th><th>Workout</th><th>Match</th><th>Findings</th></tr></thead><tbody><tr><td>AUD201</td><td>04/09/2026</td><td>Archery</td><td>Matched by session ID</td><td>Submitted</td></tr><tr><td>AUD202</td><td>04/09/2026</td><td>Pickleball</td><td>Matched by session ID</td><td>Submitted</td></tr><tr><td>(virtual)</td><td>05/09/2026 10:00</td><td>Strength Online</td><td>Matched by date, workout and time</td><td>Submitted</td></tr><tr><td>(virtual)</td><td>06/09/2026 19:00</td><td>Dance Online</td><td>Fallback match: only session of that workout that day</td><td>Submitted</td></tr><tr class="mock-flag"><td>AUD205</td><td>07/09/2026</td><td>Badminton</td><td>No finding found</td><td>Missing: flagged for follow-up</td></tr><tr class="mock-skip"><td>AUD206</td><td>07/09/2026</td><td>Bowling</td><td>Excluded</td><td>Session cancelled</td></tr></tbody></table></div>
+              </div>
+            </div>
+            <div class="mock-note">The matched rows then populate the director's HPB submission template directly.</div>
+          </div>
+          <div class="brief-section shots">
+            <div class="brief-section-label">Real Output <span class="mock-badge">Redacted screenshot</span></div>
+            <div class="brief-section-text">Real screenshots from the live tool. Names, phone numbers, pay rates, file links and venue addresses are blurred or replaced with sample values. Click an image to enlarge.</div>
+            <div class="mock-grid">
+              <div class="mock-panel mock-wide">
+                <div class="mock-title">Audit Findings file · findings matched to each scheduled session</div>
+                <a href="assets/systems/audit_findings.jpg" target="_blank" rel="noopener"><img class="shot-img" src="assets/systems/audit_findings.jpg" alt="Generated audit findings sheet with free-text findings blurred" loading="lazy"></a>
               </div>
             </div>
           </div>
