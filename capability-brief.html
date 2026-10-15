@@ -11,6 +11,22 @@
 <link rel="icon" type="image/png" sizes="16x16" href="https://hannawijaya.github.io/assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://hannawijaya.github.io/assets/favicon-180.png">
 <meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<style id="stack-css">
+/* Stacking-card scroll effect, ported from the 21st.dev stacking-cards component (pure CSS, no libraries).
+   Each slide pins at the top; the next slide slides over it as a rounded card while the covered slide recedes. */
+section.slide{position:sticky;top:0;z-index:calc(var(--i,0) + 1);background:var(--bg);transform-origin:top center;}
+section.slide:not(:first-of-type){border-radius:22px 22px 0 0;box-shadow:0 -14px 40px rgba(0,0,0,.16);}
+/* Dark mode keeps the blue slides the page has always had; light mode uses the cream page background */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.slide{background:var(--cover-bg);}}
+:root[data-theme="dark"] section.slide{background:var(--cover-bg);}
+@keyframes stack-recede{to{transform:scale(.93);filter:brightness(.88);}}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    section.slide:not(:last-of-type){animation:stack-recede linear both;animation-timeline:scroll(nearest block);animation-range:calc(var(--i) * 16.6667%) calc((var(--i) + 1) * 16.6667%);}
+  }
+}
+@media (prefers-reduced-motion:reduce){section.slide{position:relative;border-radius:0;box-shadow:none;}}
+</style>
 <style id="sb-css">
 .sb{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(250,249,245,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e4e0d8;font-family:'Geist',system-ui,sans-serif;}
 .sb-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;gap:24px;}
@@ -526,7 +542,7 @@ img { max-width: 100%; display: block; }
 </nav>
 
 <!-- ══ SLIDE 1: COVER ══════════════════════════════════════ -->
-<section class="slide" id="slide-cover" data-index="0">
+<section class="slide" id="slide-cover" data-index="0" style="--i:0">
   <a class="cover-logo" href="https://hannawijaya.github.io/" target="_blank" rel="noopener">Hanna Wijaya</a>
   <div class="slide-inner">
     <p class="cover-eyebrow">Capability Brief · 2026</p>
@@ -553,7 +569,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 2: ABOUT ══════════════════════════════════════ -->
-<section class="slide" id="slide-about" data-index="1">
+<section class="slide" id="slide-about" data-index="1" style="--i:1">
   <div class="slide-inner">
     <p class="eyebrow">About</p>
     <h2 class="slide-heading">Operations and Systems,<br>End to End</h2>
@@ -594,7 +610,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 3: WHAT I OWN ═════════════════════════════════ -->
-<section class="slide" id="slide-domains" data-index="2">
+<section class="slide" id="slide-domains" data-index="2" style="--i:2">
   <div class="slide-inner">
     <p class="eyebrow">Scope of Work</p>
     <h2 class="slide-heading">Six domains. One person.</h2>
@@ -635,7 +651,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 4: ACHIEVEMENTS ══════════════════════════════ -->
-<section class="slide" id="slide-achieve" data-index="3">
+<section class="slide" id="slide-achieve" data-index="3" style="--i:3">
   <div class="slide-inner">
     <p class="eyebrow">Impact</p>
     <h2 class="slide-heading">The Numbers.</h2>
@@ -670,7 +686,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 5: CASE HIGHLIGHTS ═══════════════════════════ -->
-<section class="slide" id="slide-cases" data-index="4">
+<section class="slide" id="slide-cases" data-index="4" style="--i:4">
   <div class="slide-inner">
     <p class="eyebrow">Selected Work</p>
     <h2 class="slide-heading">Case study highlights.</h2>
@@ -709,7 +725,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 6: HOW I WORK ══════════════════════════════════ -->
-<section class="slide" id="slide-skills" data-index="5">
+<section class="slide" id="slide-skills" data-index="5" style="--i:5">
   <div class="slide-inner">
     <p class="eyebrow">How I Work</p>
     <h2 class="slide-heading">The approach behind the output.</h2>
@@ -736,7 +752,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══ SLIDE 7: CONTACT ════════════════════════════════════ -->
-<section class="slide" id="slide-contact" data-index="6">
+<section class="slide" id="slide-contact" data-index="6" style="--i:6">
   <div class="slide-inner">
     <p class="eyebrow">Get in Touch</p>
     <h2 class="slide-heading">Let's connect.</h2>
@@ -767,22 +783,17 @@ img { max-width: 100%; display: block; }
 const slides = Array.from(document.querySelectorAll('.slide'));
 const dots   = Array.from(document.querySelectorAll('.dot'));
 
-// Update active dot on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && e.intersectionRatio >= 0.5) {
-      const idx = parseInt(e.target.dataset.index);
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-  });
-}, { threshold: 0.5 });
-slides.forEach(s => observer.observe(s));
+// Active dot follows scroll position (slides stay pinned, so visibility-based observers no longer work)
+const scroller = document.scrollingElement || document.documentElement;
+function currentIndex() { return Math.max(0, Math.min(slides.length - 1, Math.round(scroller.scrollTop / window.innerHeight))); }
+function updateDots() { const idx = currentIndex(); dots.forEach((d, i) => d.classList.toggle('active', i === idx)); }
+window.addEventListener('scroll', updateDots, { passive: true });
+updateDots();
+function goTo(i) { window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' }); }
 
 // Dot click
 dots.forEach(d => {
-  d.addEventListener('click', () => {
-    slides[parseInt(d.dataset.slide)].scrollIntoView({ behavior: 'smooth' });
-  });
+  d.addEventListener('click', () => { goTo(parseInt(d.dataset.slide)); });
 });
 
 // Keyboard navigation
@@ -790,10 +801,10 @@ document.addEventListener('keydown', e => {
   const current = dots.findIndex(d => d.classList.contains('active'));
   if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
     e.preventDefault();
-    if (current < slides.length - 1) slides[current + 1].scrollIntoView({ behavior: 'smooth' });
+    if (current < slides.length - 1) goTo(current + 1);
   } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
     e.preventDefault();
-    if (current > 0) slides[current - 1].scrollIntoView({ behavior: 'smooth' });
+    if (current > 0) goTo(current - 1);
   }
 });
 </script>
