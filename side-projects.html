@@ -23,7 +23,39 @@
 <meta name="twitter:title" content="Hanna Wijaya: Side Projects">
 <meta name="twitter:description" content="An ongoing collection of self-directed practice work outside the day job, added to as new projects land.">
 <meta name="twitter:image" content="https://hannawijaya.github.io/assets/og-image.png">
-<meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style>
+<style id="proj-tabs-css">
+section.proj{margin-top:32px;}
+.proj-tabs{position:sticky;top:64px;z-index:150;margin:0 -20px;padding:0 20px;background:rgba(250,248,244,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.proj-tabs-inner{max-width:800px;margin:0 auto;padding:10px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.proj-tabs-inner::-webkit-scrollbar{display:none;}
+.proj-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;color:var(--mid);padding:7px 14px;border:1px solid var(--border);border-radius:999px;background:#fff;white-space:nowrap;text-decoration:none;transform:scale(.94);opacity:.82;transition:transform .3s ease,opacity .3s ease,background .3s,border-color .3s,color .3s;}
+.proj-tabs a:hover{border-color:var(--accent);color:var(--accent);opacity:1;}
+.proj-tabs a.active,.proj-tabs a[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1);opacity:1;}
+.tab-badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#e9e6df;color:var(--mid);font-size:11px;font-weight:600;flex-shrink:0;transition:background .3s,color .3s;}
+.tab-badge .c{display:none;width:12px;height:12px;}
+.proj-tabs a.visited:not(.active) .tab-badge{background:var(--accent);color:#fff;}
+.proj-tabs a.visited:not(.active) .tab-badge .n{display:none;}
+.proj-tabs a.visited:not(.active) .tab-badge .c{display:block;}
+.proj-tabs a.active .tab-badge{background:rgba(255,255,255,.22);color:#fff;}
+section.proj{scroll-margin-top:130px;}
+.js-tabs section.proj{display:none;}
+.js-tabs section.proj.is-active,.js-tabs section.proj.is-leaving{display:block;}
+/* section transition modelled on the 21st.dev animated feature carousel (same as the Work Archive tabs) */
+@keyframes pane-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes pane-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-20px)}}
+@keyframes slide-x{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes content-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.js-tabs section.proj.is-leaving{animation:pane-out .25s ease-in both;pointer-events:none;}
+.js-tabs section.proj.is-entering{animation:pane-in .4s cubic-bezier(.22,1,.36,1) both;}
+.is-entering .proj-label{animation:slide-x .3s cubic-bezier(.22,1,.36,1) .05s both;}
+.is-entering .proj-head h2{animation:slide-x .3s cubic-bezier(.22,1,.36,1) .1s both;}
+.is-entering .proj-sub{animation:slide-x .3s cubic-bezier(.22,1,.36,1) .15s both;}
+.is-entering > .task,.is-entering > .exhibit,.is-entering > figure{animation:content-in .38s cubic-bezier(.22,1,.36,1) .2s both;}
+@media (prefers-reduced-motion:reduce){.js-tabs section.proj.is-leaving,.js-tabs section.proj.is-entering,.is-entering .proj-label,.is-entering .proj-head h2,.is-entering .proj-sub,.is-entering > *{animation:none!important;}}
+@media (max-width:640px){.proj-tabs a{font-size:12.5px;padding:7px 12px;}}
+</style>
+</head><body>
 <style id="sb-css">
 .sb{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(250,249,245,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e4e0d8;font-family:'Geist',system-ui,sans-serif;}
 .sb-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;gap:24px;}
@@ -303,8 +335,11 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
   </dl>
   </div>
 
+<script>document.documentElement.classList.add("js-tabs");</script>
+  <div class="proj-tabs" id="projTabs"><div class="proj-tabs-inner" role="tablist" aria-label="Side projects by skill and issuer"><a href="#daikibo" id="tab-daikibo" data-sec="daikibo" role="tab" aria-controls="daikibo" aria-selected="false"><span class="tab-badge"><span class="n">1</span><svg class="c" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="m229.66 77.66-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg></span><span class="tab-label">Data Analytics &middot; Deloitte</span></a><a href="#aether" id="tab-aether" data-sec="aether" role="tab" aria-controls="aether" aria-selected="false"><span class="tab-badge"><span class="n">2</span><svg class="c" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="m229.66 77.66-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg></span><span class="tab-label">Product Management &middot; Forage</span></a></div></div>
+
   <!-- ============ PROJECT 1: DELOITTE ============ -->
-  <section class="proj">
+  <section class="proj" id="daikibo" role="tabpanel" aria-labelledby="tab-daikibo">
     <div class="proj-head">
       <div class="proj-label">Project 01</div>
       <h2>Daikibo Industrials: A Forensic Data Investigation</h2>
@@ -402,7 +437,7 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
   </section>
 
   <!-- ============ PROJECT 2: FORAGE PM ============ -->
-  <section class="proj">
+  <section class="proj" id="aether" role="tabpanel" aria-labelledby="tab-aether">
     <div class="proj-head">
       <div class="proj-label">Project 02</div>
       <h2>Legends of Aether: Preparing a Stakeholder Review</h2>
@@ -477,4 +512,44 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
 
 </div>
 
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.proj-tabs a[data-sec]'));
+  var panels={};document.querySelectorAll('section.proj[id]').forEach(function(p){panels[p.id]=p;});
+  if(!tabs.length)return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current=null,timer=null;
+  function setTabs(id,scrollChip){
+    tabs.forEach(function(t){var on=t.dataset.sec===id;t.classList.toggle('active',on);if(on)t.classList.add('visited');t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;
+      if(on&&scrollChip){var box=t.parentNode;box.scrollTo({left:t.offsetLeft-box.clientWidth/2+t.clientWidth/2,behavior:'smooth'});}});
+  }
+  function reveal(id,fromUser){
+    var next=panels[id];next.classList.add('is-active');
+    if(!reduce){next.classList.add('is-entering');setTimeout(function(){next.classList.remove('is-entering');},900);}
+    current=id;
+    if(fromUser){var bar=document.getElementById('projTabs').getBoundingClientRect();var r=next.getBoundingClientRect();if(r.top<bar.bottom||r.top>window.innerHeight*0.7){window.scrollTo({top:window.scrollY+r.top-(bar.bottom+12),behavior:'smooth'});}}
+  }
+  function activate(id,opts){
+    opts=opts||{};if(!panels[id])id=tabs[0].dataset.sec;
+    setTabs(id,opts.scrollChip);
+    if(id===current)return;
+    clearTimeout(timer);
+    Object.keys(panels).forEach(function(k){panels[k].classList.remove('is-leaving','is-entering');if(k!==current)panels[k].classList.remove('is-active');});
+    var prev=current?panels[current]:null;
+    if(!prev||reduce||!opts.fromUser){if(prev)prev.classList.remove('is-active');reveal(id,opts.fromUser);return;}
+    prev.classList.add('is-leaving');
+    timer=setTimeout(function(){prev.classList.remove('is-active','is-leaving');reveal(id,true);},250);
+  }
+  function fromHash(user){var id=(location.hash||'').slice(1);activate(panels[id]?id:(current||tabs[0].dataset.sec),{fromUser:user,scrollChip:true});}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(e){e.preventDefault();var id=t.dataset.sec;history.replaceState(null,'','#'+id);activate(id,{fromUser:true,scrollChip:true});});
+    t.addEventListener('keydown',function(e){
+      var n=null;if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];else if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];else if(e.key==='Home')n=tabs[0];else if(e.key==='End')n=tabs[tabs.length-1];
+      if(n){e.preventDefault();n.focus();n.click();}
+    });
+  });
+  window.addEventListener('hashchange',function(){fromHash(true);});
+  fromHash(false);
+})();
+</script>
 </body></html>
