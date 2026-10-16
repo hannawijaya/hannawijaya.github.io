@@ -12,20 +12,51 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://hannawijaya.github.io/assets/favicon-180.png">
 <meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
 <style id="stack-css">
-/* Stacking-card scroll effect, ported from the 21st.dev stacking-cards component (pure CSS, no libraries).
-   Each slide pins at the top; the next slide slides over it as a rounded card while the covered slide recedes. */
-section.slide{position:sticky;top:0;z-index:calc(var(--i,0) + 1);background:var(--bg);transform-origin:top center;}
-section.slide:not(:first-of-type){border-radius:22px 22px 0 0;box-shadow:0 -14px 40px rgba(0,0,0,.16);}
+/* Stacking cards, ported from the 21st.dev stacking-cards component (pure CSS, no libraries).
+   Every slide is an inset rounded card on a contrasting backdrop. Each card pins a little lower than the previous one,
+   so the top edges of earlier cards stay visible as a stack while the next card slides over them. */
+:root{--stack-backdrop:#e3dfd5;--stack-top:66px;--stack-step:11px;--stack-gap:12px;--stack-x:16px;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--stack-backdrop:#0e0d0c;}}
+:root[data-theme="dark"]{--stack-backdrop:#0e0d0c;}
+html,body{background:var(--stack-backdrop)!important;}
+section.slide{
+  position:sticky;
+  top:calc(var(--stack-top) + var(--i,0) * var(--stack-step));
+  height:calc(100dvh - var(--stack-top) - var(--i,0) * var(--stack-step) - var(--stack-gap));
+  /* margin-bottom makes every slide occupy exactly one viewport of scroll, so snapping and the dots stay aligned */
+  margin:0 var(--stack-x) calc(var(--stack-top) + var(--i,0) * var(--stack-step) + var(--stack-gap));
+  z-index:calc(var(--i,0) + 1);
+  background:var(--bg);
+  border-radius:22px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 -10px 34px rgba(0,0,0,.16),0 2px 6px rgba(0,0,0,.06);
+  transform-origin:top center;
+  scroll-margin-top:calc(var(--stack-top) + var(--i,0) * var(--stack-step));
+}
 /* Dark mode keeps the blue slides the page has always had; light mode uses the cream page background */
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.slide{background:var(--cover-bg);}}
-:root[data-theme="dark"] section.slide{background:var(--cover-bg);}
-@keyframes stack-recede{to{transform:scale(.93);filter:brightness(.88);}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.slide{background:var(--cover-bg);border-color:rgba(255,255,255,.08);}}
+:root[data-theme="dark"] section.slide{background:var(--cover-bg);border-color:rgba(255,255,255,.08);}
+@keyframes stack-recede{to{transform:scale(.94);filter:brightness(.9);}}
 @supports (animation-timeline: scroll()){
   @media (prefers-reduced-motion:no-preference){
     section.slide:not(:last-of-type){animation:stack-recede linear both;animation-timeline:scroll(nearest block);animation-range:calc(var(--i) * 16.6667%) calc((var(--i) + 1) * 16.6667%);}
   }
 }
-@media (prefers-reduced-motion:reduce){section.slide{position:relative;border-radius:0;box-shadow:none;}}
+@media (max-width:640px){:root{--stack-top:62px;--stack-step:8px;--stack-gap:8px;--stack-x:8px;}section.slide{border-radius:18px;}}
+@media (prefers-reduced-motion:reduce){section.slide{position:relative;top:auto;height:100dvh;margin:0;border-radius:0;box-shadow:none;border:0;}}
+
+/* a trailing sibling makes the last card's bottom margin count toward scroll height, so every card gets a full viewport of scroll */
+body::after{content:"";display:block;height:1px;}
+/* About slide: compact on desktop so it fits inside a card (photo left; bio and facts side by side on the right) */
+@media (min-width:721px){
+  #slide-about .about-grid{grid-template-columns:200px 1fr;grid-template-rows:auto auto;gap:22px 44px;}
+  #slide-about .about-grid > div:first-child{display:contents;}
+  #slide-about .about-photo{grid-row:1 / span 2;grid-column:1;aspect-ratio:4/5;height:auto;}
+  #slide-about .about-bio{grid-column:2;grid-row:1;}
+  #slide-about .about-facts{grid-column:2;grid-row:2;margin-top:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 28px;}
+  #slide-about .about-facts > div:last-child{grid-column:1 / -1;}
+  #slide-about .slide-heading{margin-bottom:clamp(18px,3.5vh,36px);}
+}
 </style>
 <style id="sb-css">
 .sb{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(250,249,245,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e4e0d8;font-family:'Geist',system-ui,sans-serif;}
@@ -795,6 +826,19 @@ function goTo(i) { window.scrollTo({ top: i * window.innerHeight, behavior: 'smo
 dots.forEach(d => {
   d.addEventListener('click', () => { goTo(parseInt(d.dataset.slide)); });
 });
+
+// Fit each slide's content inside its card on shorter screens (gentle shrink, never below 78%)
+function fitSlides() {
+  slides.forEach(sl => {
+    const inner = sl.querySelector('.slide-inner'); if (!inner) return;
+    inner.style.zoom = '';
+    const avail = sl.clientHeight - 48, need = inner.scrollHeight;
+    if (need > avail) inner.style.zoom = Math.max(0.78, avail / need).toFixed(3);
+  });
+}
+fitSlides();
+window.addEventListener('resize', fitSlides);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSlides);
 
 // Keyboard navigation
 document.addEventListener('keydown', e => {
