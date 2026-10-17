@@ -59,6 +59,26 @@ section.slide > .cover-contact{position:absolute;bottom:calc(32px + var(--stack-
   #slide-about .about-facts > div:last-child{grid-column:1 / -1;}
   #slide-about .slide-heading{margin-bottom:clamp(18px,3.5vh,36px);}
 }
+
+/* About slide on phones: compact photo, two-column facts, slightly smaller bio so the slide fits its card */
+@media (max-width:720px){
+  #slide-about .about-photo{width:92px;}
+  #slide-about .about-facts{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;}
+  #slide-about .about-facts > div:nth-child(4),#slide-about .about-facts > div:nth-child(5){grid-column:1 / -1;}
+  #slide-about .about-fact-val{font-size:12px;line-height:1.35;}
+  #slide-about .about-bio p{font-size:13.5px;line-height:1.6;margin-bottom:.8em;}
+  #slide-about .slide-heading{margin-bottom:16px;}
+  #slide-about .about-grid{gap:20px;}
+}
+
+/* Phones: a slide taller than its card scrolls inside the card instead of being cut off or shrunk */
+@media (max-width:720px){
+  section.slide .slide-inner{max-height:calc(100dvh - var(--off) - var(--stack-gap) - 44px);overflow-y:auto;overscroll-behavior-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:6px;}
+  section.slide .slide-inner::-webkit-scrollbar{display:none;}
+  section.slide .slide-inner.scrolls{-webkit-mask-image:linear-gradient(#000 calc(100% - 34px),transparent);mask-image:linear-gradient(#000 calc(100% - 34px),transparent);}
+  section.slide .slide-inner.scrolls.at-end{-webkit-mask-image:none;mask-image:none;}
+}
+.domain-desc strong,.achieve-lbl strong,.case-problem strong,.hiw-text strong{color:var(--ink);font-weight:600;}
 </style>
 <style id="sb-css">
 .sb{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(250,249,245,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e4e0d8;font-family:'Geist',system-ui,sans-serif;}
@@ -633,7 +653,7 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
       <div class="about-bio">
-        <p>Hanna is an <strong>operations and systems specialist</strong> who owns processes end-to-end: from identifying the problem to shipping the fix and monitoring what changes. Over <strong>two years at Team Axis Pte Ltd in Singapore</strong>, she has grown from managing a content management system to leading the full operational product lifecycle across <strong>six functional domains simultaneously</strong>.</p>
+        <p>Hanna is an <strong>operations and systems specialist</strong> who manages processes end to end: from identifying the problem to shipping the fix and monitoring what changes. Over <strong>two years at Team Axis Pte Ltd in Singapore</strong>, she has grown from managing a content management system to leading the full operational product lifecycle across <strong>six functional domains simultaneously</strong>.</p>
         <p>Her core value is the ability to work <strong>both sides of the operational and technical boundary</strong>. She identifies operational problems, understands their root causes, translates them into structured system requirements, coordinates with developers to implement solutions, and tracks their impact after release.</p>
         <p>She is actively seeking <strong>Operations Analyst, Business Operations, or Product Operations</strong> roles in Singapore and the region, and is open for visa sponsorship and relocation.</p>
       </div>
@@ -650,33 +670,33 @@ img { max-width: 100%; display: block; }
     <div class="domain-grid">
       <div class="domain-card">
         <div class="domain-num">01</div>
-        <div class="domain-title">Operations &amp; Systems Ownership</div>
-        <div class="domain-desc">Primary owner of Axis Connect App and the Content Management System, managing features, user access, data corrections, and system integrity.</div>
+        <div class="domain-title">Operations &amp; Systems Management</div>
+        <div class="domain-desc">Runs the <strong>Axis Connect App and CMS</strong>: features, user access, data corrections, system integrity.</div>
       </div>
       <div class="domain-card">
         <div class="domain-num">02</div>
         <div class="domain-title">Business Analysis &amp; Product Coordination</div>
-        <div class="domain-desc">Full development lifecycle: requirements gathering, logic flows, mock-ups, developer briefing, user acceptance testing, release approval, and post-launch monitoring.</div>
+        <div class="domain-desc"><strong>Full development lifecycle</strong>: requirements, logic flows, mock-ups, developer briefing, <strong>UAT</strong>, release approval, post-launch monitoring.</div>
       </div>
       <div class="domain-card">
         <div class="domain-num">03</div>
         <div class="domain-title">Audit &amp; Compliance Management</div>
-        <div class="domain-desc">Coordinates 190 audit sessions per month. Monitors 100+ live operational sessions daily for compliance indicators.</div>
+        <div class="domain-desc"><strong>190 audit sessions</strong> coordinated monthly; <strong>100+ live sessions</strong> monitored daily.</div>
       </div>
       <div class="domain-card">
         <div class="domain-num">04</div>
         <div class="domain-title">Payment &amp; Payroll Administration</div>
-        <div class="domain-desc">End-to-end payment processing for 5,000+ coaches, facilitators, and auditors: reconciliation, Airwallex disbursement, and discrepancy investigation.</div>
+        <div class="domain-desc">Monthly payments for <strong>5,000+</strong> coaches, facilitators and auditors: <strong>reconciliation</strong>, Airwallex disbursement, discrepancy investigation.</div>
       </div>
       <div class="domain-card">
         <div class="domain-num">05</div>
         <div class="domain-title">Data, Automation &amp; Process Improvement</div>
-        <div class="domain-desc">Excel and Google Sheets automation pipelines, operational dashboards, and two production Google Apps Script systems built via AI-assisted development (Claude) that replaced days of manual work with hours.</div>
+        <div class="domain-desc"><strong>Excel and Sheets automation</strong>, dashboards, and two production Apps Script systems built via <strong>AI-assisted development (Claude)</strong>.</div>
       </div>
       <div class="domain-card">
         <div class="domain-num">06</div>
         <div class="domain-title">Documentation &amp; Change Management</div>
-        <div class="domain-desc">Standard operating procedures, user guides, tutorial videos, and in-app communication campaigns to drive adoption and ensure process consistency at scale.</div>
+        <div class="domain-desc"><strong>SOPs</strong>, <strong>user guides</strong>, tutorial videos and in-app campaigns that drive adoption.</div>
       </div>
     </div>
   </div>
@@ -691,27 +711,27 @@ img { max-width: 100%; display: block; }
     <div class="achieve-grid">
       <div class="achieve-tile">
         <div class="achieve-num">50% → 97%</div>
-        <div class="achieve-lbl">Data accuracy: AI-assisted audit validation using OCR and response ID verification</div>
+        <div class="achieve-lbl">Data accuracy: <strong>AI-assisted audit validation</strong> (OCR and response ID verification)</div>
       </div>
       <div class="achieve-tile">
         <div class="achieve-num">1-2 weeks to 20 min</div>
-        <div class="achieve-lbl">Audit review time: Excel automation replacing a fully manual monthly process</div>
+        <div class="achieve-lbl">Audit review time: <strong>Excel automation</strong> of a manual monthly process</div>
       </div>
       <div class="achieve-tile">
         <div class="achieve-num">240+ min to 5 min</div>
-        <div class="achieve-lbl">Payment file prep: advanced Excel automation for 5,000+ user disbursements</div>
+        <div class="achieve-lbl">Payment file prep: <strong>Excel automation</strong> for 5,000+ user disbursements</div>
       </div>
       <div class="achieve-tile">
         <div class="achieve-num">65+</div>
-        <div class="achieve-lbl">Axis Connect enhancements shipped, end-to-end ownership from requirements to post-launch</div>
+        <div class="achieve-lbl">Axis Connect enhancements shipped, <strong>managed end to end</strong> from requirements to post-launch</div>
       </div>
       <div class="achieve-tile">
         <div class="achieve-num">3-5 days → 4 hrs</div>
-        <div class="achieve-lbl">CMS import generation: AI-assisted automation (Claude) across 10+ programme spreadsheets</div>
+        <div class="achieve-lbl">CMS import generation: <strong>AI-assisted automation (Claude)</strong>, 10+ programmes</div>
       </div>
       <div class="achieve-tile">
         <div class="achieve-num">9-metric</div>
-        <div class="achieve-lbl">Daily Operations Dashboard authored and live in CMS, replaced manual daily reporting</div>
+        <div class="achieve-lbl"><strong>Daily Operations Dashboard</strong>, live in CMS, replacing manual daily reporting</div>
       </div>
     </div>
   </div>
@@ -727,28 +747,28 @@ img { max-width: 100%; display: block; }
       <div class="case-card">
         <span class="case-tag">Product Operations</span>
         <div class="case-title">App Enhancement Programme</div>
-        <div class="case-problem">Coordinated end-to-end delivery of 65+ Axis Connect enhancements, from requirements and logic flows through user acceptance testing, release approval, and post-launch monitoring.</div>
+        <div class="case-problem">End-to-end delivery of <strong>65+ Axis Connect enhancements</strong>, from requirements to post-launch monitoring.</div>
         <div class="case-outcome">65+</div>
         <div class="case-outcome-lbl">Features shipped to production</div>
       </div>
       <div class="case-card">
         <span class="case-tag">Data and Automation</span>
         <div class="case-title">Data Validation Redesign</div>
-        <div class="case-problem">Rebuilt an unreliable manual audit validation process using AI-assisted OCR and response ID verification, transforming data integrity across the organisation.</div>
+        <div class="case-problem">Rebuilt a manual audit validation process with <strong>AI-assisted OCR</strong> and response ID verification.</div>
         <div class="case-outcome">50% → 97%</div>
         <div class="case-outcome-lbl">Data accuracy achieved</div>
       </div>
       <div class="case-card">
         <span class="case-tag">Process Improvement</span>
         <div class="case-title">Payment Process Automation</div>
-        <div class="case-problem">Designed and built the payment preparation system for 5,000+ coaches and facilitators, eliminating hours of manual calculation and reducing error rates.</div>
+        <div class="case-problem">Designed and built the <strong>payment preparation system</strong> for 5,000+ coaches and facilitators, cutting manual calculation and errors.</div>
         <div class="case-outcome">240+ min to 5 min</div>
         <div class="case-outcome-lbl">Disbursement file prep time</div>
       </div>
       <div class="case-card">
         <span class="case-tag">Product Operations</span>
         <div class="case-title">Audit Findings Digitisation</div>
-        <div class="case-problem">Replaced a passive Google Forms process with a fully in-app findings module, cutting issue escalation time from over a week to within 48 hours.</div>
+        <div class="case-problem">Replaced a Google Forms process with an <strong>in-app findings module</strong>, cutting issue escalation from over a week to <strong>48 hours</strong>.</div>
         <div class="case-outcome">7+ days to 48 hours</div>
         <div class="case-outcome-lbl">Issue escalation time</div>
       </div>
@@ -764,20 +784,20 @@ img { max-width: 100%; display: block; }
     <h2 class="slide-heading">The approach behind the output.</h2>
     <div class="hiw-grid">
       <div class="hiw-card">
-        <div class="hiw-label">End-to-end ownership</div>
-        <div class="hiw-text">I don't hand work off at the edges. From identifying the problem to shipping the fix and monitoring its impact, I own the full loop: requirements, implementation brief, UAT, release, and post-launch.</div>
+        <div class="hiw-label">End-to-end responsibility</div>
+        <div class="hiw-text">I don't hand work off at the edges. I handle the <strong>full loop</strong>: requirements, implementation brief, <strong>UAT</strong>, release, and post-launch.</div>
       </div>
       <div class="hiw-card">
         <div class="hiw-label">Systems thinking</div>
-        <div class="hiw-text">I look for the process failure before the task failure. When something breaks or slows down, I trace it upstream, then build a solution that handles the root cause, not just the symptom.</div>
+        <div class="hiw-text">I trace failures upstream and fix the <strong>root cause</strong>, not just the symptom.</div>
       </div>
       <div class="hiw-card">
         <div class="hiw-label">Operations meets technology</div>
-        <div class="hiw-text">I translate between operational reality and technical implementation. I write specs developers can build from, and I understand enough about systems to know when a workaround will create problems later.</div>
+        <div class="hiw-text">I translate between operations and technology. I write <strong>specs developers can build from</strong> and spot workarounds that will cause problems later.</div>
       </div>
       <div class="hiw-card">
         <div class="hiw-label">Documentation as infrastructure</div>
-        <div class="hiw-text">Every process I build gets documented: SOPs, logic flows, user guides, post-launch comms. If it only lives in my head, it doesn't scale. Good documentation is how I protect the work I've done.</div>
+        <div class="hiw-text">Every process I build gets <strong>documented</strong>: SOPs, logic flows, user guides, post-launch comms. If it only lives in my head, it doesn't scale.</div>
       </div>
     </div>
   </div>
@@ -829,11 +849,23 @@ dots.forEach(d => {
   d.addEventListener('click', () => { goTo(parseInt(d.dataset.slide)); });
 });
 
-// Fit each slide's content inside its card on shorter screens (gentle shrink, never below 78%)
+// Fit each slide's content inside its card. Desktop: gentle shrink (never below 78%). Phones: the slide scrolls inside its card.
+const phoneMQ = window.matchMedia('(max-width: 720px)');
 function fitSlides() {
   slides.forEach(sl => {
     const inner = sl.querySelector('.slide-inner'); if (!inner) return;
     inner.style.zoom = '';
+    if (phoneMQ.matches) {
+      const check = () => {
+        const scrolls = inner.scrollHeight > inner.clientHeight + 2;
+        inner.classList.toggle('scrolls', scrolls);
+        inner.classList.toggle('at-end', scrolls && inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 4);
+      };
+      if (!inner._scrollBound) { inner.addEventListener('scroll', check, { passive: true }); inner._scrollBound = true; }
+      check();
+      return;
+    }
+    inner.classList.remove('scrolls', 'at-end');
     const cs = getComputedStyle(sl), avail = sl.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 48, need = inner.scrollHeight;
     if (need > avail) inner.style.zoom = Math.max(0.78, avail / need).toFixed(3);
   });

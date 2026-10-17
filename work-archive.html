@@ -196,6 +196,7 @@ body{overflow-x:clip;}
 .tab-badge .c{width:10px;height:10px;}
 }
 .arch-index a[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.arch-sub strong{color:var(--ink);font-weight:600;}
 </style></head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -433,7 +434,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Product Documentation</div>
     <h2 class="arch-heading">Sample Product Requirement Briefs</h2>
-    <p class="arch-sub">For each Axis Connect enhancement, Hanna authors a structured requirement document before any developer work begins, capturing the objective, expected outcome, logic flow, and decision rules. Three representative briefs are shown below; all active work is tracked in ClickUp across two lists: Axis Connect (app-side) and CMS.</p>
+    <p class="arch-sub">For each Axis Connect enhancement, Hanna authors a <strong>structured requirement document</strong> before any developer work begins, capturing the objective, expected outcome, logic flow, and decision rules. Three representative briefs are shown below; all active work is tracked in <strong>ClickUp</strong> across two lists: Axis Connect (app-side) and CMS.</p>
     <div class="g1">
 
       <!-- Brief 1: Daily Operations Dashboard -->
@@ -567,7 +568,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Systems &amp; Automation</div>
     <h2 class="arch-heading">Production Google Apps Script Systems</h2>
-    <p class="arch-sub">AI-assisted development (Claude): specified the full business logic and requirements for two recurring manual monthly processes, then iteratively tested and reviewed results until every execution ran correctly, replacing them with live, maintained automation.</p>
+    <p class="arch-sub"><strong>AI-assisted development (Claude)</strong>: specified the full business logic and requirements for two recurring manual monthly processes, then iteratively tested and reviewed results until every execution ran correctly, replacing them with <strong>live, maintained automation</strong>.</p>
     <div class="g1">
 
       <div class="brief-card">
@@ -782,7 +783,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Feature Specifications &amp; Process Flows</div>
     <h2 class="arch-heading">Logic Flows, Specifications &amp; Operational Maps</h2>
-    <p class="arch-sub">Feature decision trees and dual-scenario specifications authored as developer implementation briefs, alongside process flowcharts and operational scope maps used for internal alignment and documentation.</p>
+    <p class="arch-sub">Feature <strong>decision trees</strong> and <strong>dual-scenario specifications</strong> authored as developer implementation briefs, alongside process flowcharts and operational scope maps used for internal alignment and documentation.</p>
     <div class="g1">
       <div class="asset-card">
   <div class="asset-label-bar">
@@ -1169,7 +1170,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Flagship Enhancements</div>
     <h2 class="arch-heading">Five of the 65 Shipped Initiatives</h2>
-    <p class="arch-sub">The platform's highest-impact improvements, each defined by Hanna and coordinated through to production.</p>
+    <p class="arch-sub">The platform's <strong>highest-impact improvements</strong>, each defined by Hanna and coordinated through to production.</p>
     <div class="g3">
       <div class="ff-card"><div class="ff-head"><span class="ff-num">01</span><div><div class="ff-title">Automated Escalation &amp; Cover System</div><span class="ff-badge">Shipped</span></div></div><div class="ff-block"><span class="ff-lbl">Problem</span><p>Chasing unacknowledged sessions and no-shows was manual and time-sensitive.</p></div><div class="ff-block"><span class="ff-lbl">Solution</span><p>Cascading alert engine: 3-hour pre-class reminder, auto-calls at 1-day and 2-hour windows, 20-minute "class not started" alert.</p></div><div class="ff-block"><span class="ff-lbl">Impact</span><p>Escalation runs on a clock, not a person watching a spreadsheet.</p></div></div>
       <div class="ff-card"><div class="ff-head"><span class="ff-num">02</span><div><div class="ff-title">Geo-Fenced Safety &amp; Compliance</div><span class="ff-badge">Shipped</span></div></div><div class="ff-block"><span class="ff-lbl">Problem</span><p>Trainers could mark "arrived" without being on-site. Safety conditions weren't captured.</p></div><div class="ff-block"><span class="ff-lbl">Solution</span><p>Geo-tagging that locks "I Have Arrived" to a physical radius check, plus mandatory heat stress and haze declarations per session.</p></div><div class="ff-block"><span class="ff-lbl">Impact</span><p>Verified on-site presence and a documented safety trail for every session.</p></div></div>
@@ -1185,7 +1186,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Design Quality Assurance</div>
     <h2 class="arch-heading">Figma UI/UX Audit &amp; AI-Agent Review Workflow</h2>
-    <p class="arch-sub">Beyond product requirements, Hanna runs structured design QA passes on the team's Figma reference files, then routes findings into an AI design agent as prioritized natural-language prompts rather than editing every screen by hand.</p>
+    <p class="arch-sub">Beyond product requirements, Hanna runs structured <strong>design QA</strong> passes on the team's Figma reference files, then routes findings into an <strong>AI design agent</strong> as prioritized natural-language prompts rather than editing every screen by hand.</p>
     <div class="g1">
 
       <div class="brief-card">
@@ -1200,8 +1201,8 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
         </div>
         <div class="brief-body">
           <div class="brief-section">
-            <div class="brief-section-label">Ownership Context</div>
-            <div class="brief-section-text">Before Hanna took over this product, the trainer app had only a basic session reminder, an unreliable certificate upload flow, no invoice visibility on the profile page, no location/map extraction on sessions, and no FAQ, incident report, or audit findings modules at all. The admin portal itself was non-functional, crashing on login. All of these were designed and built out as part of taking ownership of the app.</div>
+            <div class="brief-section-label">Starting Point</div>
+            <div class="brief-section-text">Before Hanna took over this product, the trainer app had only a basic session reminder, an unreliable certificate upload flow, no invoice visibility on the profile page, no location/map extraction on sessions, and no FAQ, incident report, or audit findings modules at all. The admin portal itself was non-functional, crashing on login. All of these were designed and built out after taking over the app.</div>
           </div>
           <div class="brief-section">
             <div class="brief-section-label">Objective</div>
@@ -1240,7 +1241,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Quality Assurance</div>
     <h2 class="arch-heading">Monthly App Check: A Repeatable Regression Checklist</h2>
-    <p class="arch-sub">A structured test checklist, designed by Hanna and run every month against the live app and CMS, so regressions and gaps in newly launched features are caught by the team before users find them.</p>
+    <p class="arch-sub">A <strong>structured test checklist</strong>, designed by Hanna and <strong>run every month</strong> against the live app and CMS, so regressions and gaps in newly launched features are caught by the team before users find them.</p>
     <div class="g1">
 
       <div class="brief-card">
@@ -1306,7 +1307,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Town Hall Presentations</div>
     <h2 class="arch-heading">Quarterly Updates Presented to Senior Leadership</h2>
-    <p class="arch-sub">Hanna presents the Axis Connect product roadmap, enhancement summaries, and operational performance data to the full company at quarterly town halls, authored and delivered independently.</p>
+    <p class="arch-sub">Hanna presents the Axis Connect <strong>product roadmap</strong>, enhancement summaries, and operational performance data to the full company at <strong>quarterly town halls</strong>, authored and delivered independently.</p>
     <div class="g2">
       <div class="pres-record">
   <div class="pres-record-top">
@@ -1380,7 +1381,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Enhancement Decks</div>
     <h2 class="arch-heading">Product &amp; Operational Update Presentations</h2>
-    <p class="arch-sub">Deep-dive decks on specific enhancement releases and the full operational journey of Axis Connect, prepared for management, Programme Coordinators, and the development team.</p>
+    <p class="arch-sub">Deep-dive decks on specific <strong>enhancement releases</strong> and the full <strong>operational journey</strong> of Axis Connect, prepared for management, Programme Coordinators, and the development team.</p>
     <div class="g2">
       <div class="pres-record">
   <div class="pres-record-top">
@@ -1443,7 +1444,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">User Guides &amp; Landing Pages</div>
     <h2 class="arch-heading">Public-facing Resources Co-created With the Graphic Designer</h2>
-    <p class="arch-sub">Six live pages on team-axis.com: feature walkthroughs, video guidelines, and onboarding resources written and scoped by Hanna and designed in collaboration with the company's graphic designer. Distributed to 5,000+ trainers and facilitators at each feature launch.</p>
+    <p class="arch-sub">Six live pages on team-axis.com: feature walkthroughs, video guidelines, and onboarding resources written and scoped by Hanna and designed in collaboration with the company's graphic designer. Distributed to <strong>5,000+ trainers and facilitators</strong> at each feature launch.</p>
     <div class="link-cards-grid">
       <a href="https://www.team-axis.com/axis-connect-newfeatureupdate" target="_blank" class="link-card">
         <div class="link-card-top"><span class="lc-tag">Feature Update</span><span class="lc-ext">↗</span></div>
