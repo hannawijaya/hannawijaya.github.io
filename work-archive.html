@@ -435,7 +435,7 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
   <div class="arch-inner">
     <div class="arch-label">Product Documentation</div>
     <h2 class="arch-heading">Sample Product Requirement Briefs</h2>
-    <p class="arch-sub">For each Axis Connect enhancement, Hanna authors a <strong>structured requirement document</strong> before any developer work begins, capturing the objective, expected outcome, <strong>logic flow</strong>, and decision rules. Four representative briefs are shown below; all active work is tracked in <strong>ClickUp</strong> across two lists: Axis Connect (app-side) and <strong>CMS</strong>.</p>
+    <p class="arch-sub">For each Axis Connect enhancement, Hanna authors a <strong>structured requirement document</strong> before any developer work begins, capturing the objective, expected outcome, <strong>logic flow</strong>, and decision rules. Six representative briefs are shown below; all active work is tracked in <strong>ClickUp</strong> across two lists: Axis Connect (app-side) and <strong>CMS</strong>.</p>
     <div class="g1">
 
       <!-- Brief 1: Daily Operations Dashboard -->
@@ -607,6 +607,95 @@ footer{background:var(--hero-bg);border-top:1px solid var(--border);padding:22px
             <div class="brief-section-label">Briefing Deck</div>
             <div class="brief-section-text" style="margin-bottom:10px;">The 12-slide brief prepared for the development team, covering the problem, the new flow, the phased rollout and the open decisions. Five slides shown.</div>
             <div class="mini-slider" style="border-radius:8px;"><div class="mini-slider-track"><img src="assets/certificate/deck-1.jpg" alt="Certificate revamp briefing deck, slide 1" loading="lazy"><img src="assets/certificate/deck-2.jpg" alt="Certificate revamp briefing deck, slide 2" loading="lazy"><img src="assets/certificate/deck-3.jpg" alt="Certificate revamp briefing deck, slide 3" loading="lazy"><img src="assets/certificate/deck-4.jpg" alt="Certificate revamp briefing deck, slide 4" loading="lazy"><img src="assets/certificate/deck-5.jpg" alt="Certificate revamp briefing deck, slide 5" loading="lazy"></div><button class="mini-slider-btn prev" aria-label="Previous slide">&#8249;</button><button class="mini-slider-btn next" aria-label="Next slide">&#8250;</button><div class="mini-slider-dots"><button class="mini-slider-dot active" aria-label="Slide 1"></button><button class="mini-slider-dot" aria-label="Slide 2"></button><button class="mini-slider-dot" aria-label="Slide 3"></button><button class="mini-slider-dot" aria-label="Slide 4"></button><button class="mini-slider-dot" aria-label="Slide 5"></button></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brief-card">
+        <div class="brief-header">
+          <div class="brief-header-left">
+            <div class="brief-title">Application Tracking and Self-Withdrawal</div>
+            <div class="brief-meta">
+              <span class="brief-tag brief-tag-both">App + CMS</span>
+              <span class="brief-status brief-status-progress">Ongoing: In Development</span>
+            </div>
+          </div>
+        </div>
+        <div class="brief-body">
+          <div class="brief-section">
+            <div class="brief-section-label">Objective</div>
+            <div class="brief-section-text">Let trainers see the status of every job they have applied for and withdraw an application themselves, so nobody applies twice and admins stop handling withdrawals by message. Specified in Nov 2026 and now in development with the developer.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Status Model</div>
+            <div class="brief-req-list">
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span><strong>Four states:</strong> Pending, Withdrawn, Assigned and Not selected, each with its own status pill</span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>A pending job is marked <strong>"Applied"</strong> so it cannot be applied for twice</span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>My Sessions gains an <strong>Upcoming | Applied | Past</strong> split, with a count on Applied; closed items clear after 7 days</span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Withdrawing needs a <strong>confirmation dialog</strong>; history is kept with timestamps, not deleted</span></div>
+            </div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Rules and Edge Cases</div>
+            <div class="brief-req-list">
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>When someone is assigned, other pending applicants are marked <strong>"Not selected"</strong> and notified by push notification</span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Closing is scoped by <strong>session and role</strong>, so assigning an instructor does not reject facilitator applicants</span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>If a withdrawal arrives at the moment of assignment, the system <strong>rejects the withdrawal with a conflict message</strong> and tells the trainer they were assigned</span></div>
+            </div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Design-System Reuse</div>
+            <div class="brief-section-text">Specified to reuse existing patterns (the navy bottom navigation, the white sub-tab strip, the two-card session details with a pill button and the centred confirmation dialog) with defined colours for the new status pills, instead of introducing new components.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">UI/UX Reference</div>
+            <div class="brief-section-text">Prototype built in <strong>Figma</strong> and <strong>Gemini</strong> as a UI/UX reference for the developer, using the app's existing components.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Status</div>
+            <div class="brief-section-text">In development. Not yet released.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brief-card">
+        <div class="brief-header">
+          <div class="brief-header-left">
+            <div class="brief-title">In-App Bug Reporting and CMS Triage</div>
+            <div class="brief-meta">
+              <span class="brief-tag brief-tag-both">App + CMS</span>
+              <span class="brief-status brief-status-review">Proposed</span>
+            </div>
+          </div>
+        </div>
+        <div class="brief-body">
+          <div class="brief-section">
+            <div class="brief-section-label">Objective</div>
+            <div class="brief-section-text">Give trainers a structured way to report app problems from inside the app, with the information the team needs to reproduce them, and give Ops a triage queue in the CMS. Written as a proposal; not yet discussed with the developer.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Proposed Flow</div>
+            <div class="brief-req-list">
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Entry point on the FAQ screen, <strong>separate from the chat tool</strong></span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Form with a category, an optional session, a description and up to <strong>2 screenshots</strong></span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Device and app details are captured automatically, and <strong>never passwords, tokens, ID numbers or bank details</strong></span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Each report gets a numbered ticket (<strong>#BUG-XXXX</strong>) and the trainer can follow its status</span></div>
+            </div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">CMS Triage</div>
+            <div class="brief-req-list">
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Ops either <strong>resolves a ticket with a note</strong> or <strong>escalates it to the developer's tracker</strong></span></div>
+              <div class="brief-req-item"><div class="brief-req-dot"></div><span>Guardrails: <strong>3 reports per hour</strong> per user, a debounced submit button, and images compressed under 2 MB</span></div>
+            </div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">UI/UX Reference</div>
+            <div class="brief-section-text">Prototype built in <strong>Figma</strong> and <strong>Gemini</strong> as a UI/UX reference for the developer, using the app's existing components.</div>
+          </div>
+          <div class="brief-section">
+            <div class="brief-section-label">Status</div>
+            <div class="brief-section-text">Proposed only. Not yet agreed or planned.</div>
           </div>
         </div>
       </div>
