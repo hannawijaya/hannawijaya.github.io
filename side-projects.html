@@ -55,6 +55,7 @@ section.proj{scroll-margin-top:130px;}
 @media (prefers-reduced-motion:reduce){.js-tabs section.proj.is-leaving,.js-tabs section.proj.is-entering,.is-entering .proj-label,.is-entering .proj-head h2,.is-entering .proj-sub,.is-entering > *{animation:none!important;}}
 @media (max-width:640px){.proj-tabs a{font-size:12.5px;padding:7px 12px;}}
 .dek strong{color:var(--ink);font-weight:600;}
+.proj-sub strong,.finding strong,section.proj p strong,section.proj li strong{color:var(--ink);font-weight:600;}
 </style>
 </head><body>
 <style id="sb-css">
@@ -350,7 +351,7 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
     <div class="task">
       <span class="task-tag">Task A &middot; Tableau</span>
       <h3>Which Machines Keep Breaking?</h3>
-      <p>Daikibo's tech team had a month of IoT telemetry sitting in one nested JSON file: May 2021, four factories, nine machine types each, a status ping every ten minutes, 160,704 records deep. Every "unhealthy" ping stood in for ten minutes of possible downtime. The brief: find where to send the maintenance crew first.</p>
+      <p>Daikibo's tech team had a month of IoT telemetry sitting in one nested JSON file: May 2021, four factories, nine machine types each, a status ping every ten minutes, <strong>160,704 records</strong> deep. Every "unhealthy" ping stood in for ten minutes of possible downtime. The brief: find where to send the maintenance crew first.</p>
 
       <ol class="steps">
         <li><span class="n">1</span>Imported the nested JSON into Tableau, expanding every schema level so <code>location.factory</code> and <code>data.status</code> resolved as usable fields, not buried objects.</li>
@@ -369,7 +370,7 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
         </div>
       </div>
 
-      <div class="finding">Filtering the dashboard to <b>Daikibo Factory Seiko</b> isolates it as the worst performer, with 480 minutes of downtime. The linked device-type chart then attributes <b>100% of that downtime to a single machine, the LaserWelder</b>, accounting for all 48 of its unhealthy pings, with every other device type at Seiko reporting clean.</div>
+      <div class="finding">Filtering the dashboard to <b>Daikibo Factory Seiko</b> isolates it as the worst performer, with <strong>480 minutes</strong> of downtime. The linked device-type chart then attributes <b>100% of that downtime to a single machine, the LaserWelder</b>, accounting for all 48 of its unhealthy pings, with every other device type at Seiko reporting clean.</div>
 
       <figure class="asset">
         <div class="asset-bar"><span class="asset-tag">Exhibit</span><span class="asset-name">Submitted Tableau Dashboard</span></div>
@@ -381,7 +382,7 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
     <div class="task">
       <span class="task-tag">Task B &middot; Excel</span>
       <h3>Where Did Pay Stop Being Fair?</h3>
-      <p>After internal complaints about gender pay inequality, Daikibo's Forensic Tech team had already scored every Factory &times; Job Role pair on an <b>Equality Score</b> from &minus;100 to +100, where 0 is parity: 37 pairs across 4 factories and up to 11 roles each, from Machine Operator up to C-Level. The scores existed; nobody had classified them yet.</p>
+      <p>After internal complaints about gender pay inequality, Daikibo's Forensic Tech team had already scored every Factory &times; Job Role pair on an <b>Equality Score</b> from &minus;100 to +100, where 0 is parity: <strong>37 pairs</strong> across <strong>4 factories</strong> and up to 11 roles each, from Machine Operator up to C-Level. The scores existed; nobody had classified them yet.</p>
 
       <table class="rtable">
         <thead><tr><th>Class</th><th>Score range</th><th>Reading</th></tr></thead>
@@ -465,7 +466,7 @@ footer{margin-top:80px;padding-top:22px;border-top:1px solid var(--border);}
 
       <ul class="priority">
         <li class="kept"><span class="tag">Kept</span><span><b>Day 7 retention declined</b> among new players after the latest update, the core risk and headline finding.</span></li>
-        <li class="kept"><span class="tag">Kept</span><span>Survey responses suggest <b>onboarding is confusing</b> for new players, the likely root cause behind the decline.</span></li>
+        <li class="kept"><span class="tag">Kept</span><span>Survey responses suggest <b>onboarding is confusing</b> for new players, the likely <strong>root cause</strong> behind the decline.</span></li>
         <li class="kept"><span class="tag">Kept</span><span><b>Session length rose</b> among players who completed onboarding, the upside case for fixing it.</span></li>
         <li class="kept"><span class="tag">Kept</span><span>Players acquired through the recent <b>marketing campaign retain worse</b> than existing players, the segment-level view of the same risk.</span></li>
         <li class="cut"><span class="tag">Cut</span><span>Strong event participation among already-engaged players, which didn't move the decision at hand.</span></li>
